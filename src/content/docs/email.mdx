@@ -16,12 +16,14 @@ This starter kit integrates with [Nodemailer](https://nodemailer.com/) for sendi
 # Email
 EMAIL_FROM=contact@yourdomain.com
 EMAIL_HOST=smtp.example.com
-EMAIL_SECURE=false
+EMAIL_TLS=no
 EMAIL_PORT=587
 EMAIL_USERNAME=<smtp-username>
 EMAIL_PASSWORD=<smtp-password>
 ...
 ```
+
+* *Note:* `EMAIL_TLS` should be either `no` or `yes`.
 
 2. To test your email configuration, go to http://localhost:4321/contact, fill in the form, and submit it. Then, check the inbox that you sent the email to and see if your message is there.
 
