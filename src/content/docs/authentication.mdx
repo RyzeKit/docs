@@ -3,7 +3,6 @@ title: Authentication
 description: Authentication with RyzeKit.
 ---
 import { Image } from 'astro:assets';
-import CreateTenantPic from '/src/assets/Create-Tenant.png'
 
 ## Introduction
 
@@ -13,20 +12,20 @@ This starter kit mainly uses [Logto](https://logto.io/) for authentication, with
 
 1. Create a [Logto](https://auth.logto.io/register) account if you don't have one already.
 2. Create a tenant (any tenant name and data region should be fine).
-    <Image src={CreateTenantPic} alt='Create-Tenant' width='750' height='450' />
+    <Image src='/Create-Tenant.png' alt='Create-Tenant' width='750' height='450' />
 3. Create your sign-in experience.
     * For **Identifier**, choose **Email address**, because **Username** is not included in this starter kit at this time.
     * For **Password**, you can choose any combination of **Password** and/or **Verification code**.
     * For **Social sign-in**, choose the social provider of your choice, if any.
     * For our example, we will be choosing **Email address**, **Password**, **Verification code**, and **Github**.
-    <Image src='/src/assets/Create-Signin-Experience.png' alt='Create-Signin-Experience' width='750' height='450'></Image>
+    <Image src='/Create-Signin-Experience.png' alt='Create-Signin-Experience' width='750' height='450'></Image>
 4. In the Logto console, go to **Applications**. Then, scroll down to the bottom and click **View all ->**. Then at the bottom right, click **Create app without framework**. Select **Traditional Web** and fill in the application details and click **Create application**.
-    <Image src='/src/assets/Applications-TraditionalWeb.png' alt='Applications-TraditionalWeb' width='750' height='450'></Image>
+    <Image src='/Applications-TraditionalWeb.png' alt='Applications-TraditionalWeb' width='750' height='450'></Image>
 5. Under **Redirect URIs**, enter `http://localhost:4321/callback`. Under **Post sign-out redirect URIs**, enter `http://localhost:4321` (no trailing backslash!). Then click **Save changes**.
     * *Note:* Having a trailing backslash at the end (e.g. `http://localhost:4321/`) will cause sign-outs to fail.
-    <Image src='/src/assets/Redirect-URIs.png' alt='Redirect-URIs' width='750' height='450'></Image>
+    <Image src='/Redirect-URIs.png' alt='Redirect-URIs' width='750' height='450'></Image>
 6. Scroll down to the **Endpoints & Credentials** section. Update the `.env` file of your project with your Logto credentials (see image below for the environment variables).
-    <Image src='/src/assets/Logto-Config.png' alt='Logto-Config' width='750' height='450'></Image>
+    <Image src='/Logto-Config.png' alt='Logto-Config' width='750' height='450'></Image>
     * Your `.env` file should now look something like this:
     ```env filename=".env" {3-5} copy
     ...
@@ -43,13 +42,13 @@ This starter kit mainly uses [Logto](https://logto.io/) for authentication, with
 The Logto Management API is used by the starter kit to interact with Logto via API. Follow the steps below to get it set up.
 
 1. In the Logto console, go to **Applications** and click the **+ Create application** button in the top right.
-    <Image src='/src/assets/Applications-Create-application.png' alt='Applications-Create-application' width='750' height='450'></Image>
+    <Image src='/Applications-Create-application.png' alt='Applications-Create-application' width='750' height='450'></Image>
 2. Scroll down to **Machine-to-machine** and click **Start building**. Then fill in the application details and click **Create application**.
-    <Image src='/src/assets/M2M-Start-building.png' alt='M2M-Start-building' width='750' height='450'></Image>
+    <Image src='/M2M-Start-building.png' alt='M2M-Start-building' width='750' height='450'></Image>
 3. Check the box next to **Logto Management API access role** and click the **Assign roles** button.
-    <Image src='/src/assets/M2M-Role.png' alt='M2M-Role' width='750' height='450'></Image>
+    <Image src='/M2M-Role.png' alt='M2M-Role' width='750' height='450'></Image>
 4. Scroll down to **2. Basics about access token request**. Update the `.env` file with app ID and app secret (see image below for the corresponding environment variables). Afterwards, click **Finish and done**.
-    <Image src='/src/assets/M2M-Config.png' alt='M2M-Config' width='750' height='450'></Image>
+    <Image src='/M2M-Config.png' alt='M2M-Config' width='750' height='450'></Image>
     * Your `.env` file should now look something like this:
     ```env filename=".env" {3-4} copy
     ...
