@@ -1,0 +1,100 @@
+---
+title: Getting Started
+description: Getting started with RyzeKit.
+---
+
+import {
+  Aside
+} from "@astrojs/starlight/components";
+
+### Welcome to RyzeKit 🚀
+
+Get your app up and running by following the steps below.
+
+## Prerequisites
+
+Before you can get started, you will need to have the following installed on your machine.
+
+- Node.js (v20 or higher)
+- Git
+- pnpm
+- A code editor (VSCode, VSCodium, WebStorm, etc.)
+
+## Set up a new database
+
+> This starter kit uses [Drizzle](https://orm.drizzle.team/) as the database ORM. It is currently configured to use PostgreSQL, but you can manually modify it to use MySQL or SQLite instead. For PostgreSQL, we recommend [Neon](https://neon.tech/) and [Zeabur](https://zeabur.com/templates/B20CX0).
+
+Create a new PostgreSQL database and have the connection string ready. The connection string should look something like this:
+
+```env copy
+postgresql://user:password@host:port/database
+```
+
+## Initialize a new project
+
+Next, go to your terminal. Then, clone the Github repository.
+
+```sh copy
+git clone https://github.com/RyzeKit/astro-starterkit.git
+```
+
+Navigate into the project directory.
+
+```sh copy
+cd astro-starterkit
+```
+
+Install the dependencies.
+
+```sh copy
+pnpm install
+```
+
+Now, re-initialize Git for your project.
+
+```sh copy
+rm -rf .git
+git init
+git add .
+git commit -m "Initial commit"
+```
+
+Create a `.env` file in the root of the project by copying the `.env.example` file.
+
+```sh copy
+cp .env.example .env
+```
+
+## Migrate the database
+
+Open the `.env` file in your code editor and update the `DATABASE_URL` environment variable with your database connection string from above.
+
+```env filename=".env" {2} copy
+# Database
+DATABASE_URL=postgresql://user:password@host:port/database
+...
+```
+
+Migrate your database.
+
+```sh copy
+pnpm drizzle-kit push
+```
+
+Now if you check your database, you should see the `user`, `session`, and `subscription` tables.
+
+## Start the development server
+
+Run the following command in your terminal to start the development server.
+
+```sh copy
+pnpm dev
+```
+
+Open http://localhost:4321 in your browser to see your app.
+
+🚀 Congratulations, your app is now up and running! Proceed to the next page to continue with setup.
+
+<Aside>
+You might come across an <u>Invalid URL</u> error. This is due to other environment variables not being set yet, so don't worry about this. We will set the other environment variables in the next page.
+</Aside>

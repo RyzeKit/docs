@@ -10,23 +10,26 @@ export default defineConfig({
         github: "https://github.com/RyzeKit/docs",
       },
       sidebar: [
+        { label: "Getting Started", slug: "getting-started" },
+        { label: "Authentication", slug: "authentication" },
         {
-          label: "Guides",
+          label: "Payments",
           items: [
-            // Each item here is one entry in the navigation menu.
-            { label: "Example Guide", slug: "guides/example" },
+            { label: "Introduction", slug: "payments/introduction" },
+            { label: "Stripe", slug: "payments/stripe" },
+            { label: "Lemonsqueezy", slug: "payments/lemonsqueezy" },
           ],
         },
-        {
-          label: "Reference",
-          autogenerate: { directory: "reference" },
-        },
+        { label: "Email", slug: "email" },
+        { label: "Deployment", slug: "deployment" },
+        { label: "Analytics", slug: "analytics" },
       ],
       components: {
         ThemeProvider: "./src/components/ThemeProvider.astro",
         ThemeSelect: "./src/components/ThemeSelect.astro",
       },
       customCss: ["./src/styles/globals.css"],
+      editLink: { baseUrl: "https://github.com/RyzeKit/docs/edit/main" },
     }),
   ],
 });

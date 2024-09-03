@@ -1,0 +1,30 @@
+---
+title: Email
+description: Email with RyzeKit.
+---
+
+## Introduction
+
+This starter kit integrates with [Nodemailer](https://nodemailer.com/) for sending emails. You can connect any email provider that supports SMTP with Nodemailer, such as [Postmark](https://postmarkapp.com/).
+
+## Setup
+
+1. In the `.env` file in your project, add your email provider credentials. It should look something like this:
+
+```env filename=".env" {3-8} copy
+...
+# Email
+EMAIL_FROM=contact@yourdomain.com
+EMAIL_HOST=smtp.example.com
+EMAIL_SECURE=false
+EMAIL_PORT=587
+EMAIL_USERNAME=<smtp-username>
+EMAIL_PASSWORD=<smtp-password>
+...
+```
+
+2. To test your email configuration, go to http://localhost:4321/contact, fill in the form, and submit it. Then, check the inbox that you sent the email to and see if your message is there.
+
+## Next Steps
+
+🚀 Congratulations, you've successfully set up emails! Proceed to the next page to continue with setup.

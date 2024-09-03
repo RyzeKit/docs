@@ -1,0 +1,48 @@
+---
+title: Stripe
+description: Stripe Payments with RyzeKit.
+next:
+  link: /email
+  label: Email
+---
+
+## Introduction
+
+Follow this guide to get set up with Stripe.
+
+## Create Stripe Account
+
+1. First, [create a Stripe account](https://dashboard.stripe.com/register) if you don't have one already. Follow the onboarding instructions to set up your Stripe account with your bank account and fill in other details.
+
+## Getting the API Key
+
+2. Next, you will need to get the Stripe API key from the [API keys page](https://dashboard.stripe.com/apikeys). Here you will find the Publishable key and the Secret key. If you don't see any, click "**+ Create secret key**" to create a new key.
+3. In the `.env` file of your project, add the secret key to the `STRIPE_API_KEY` variable.
+
+## Creating Products
+
+4. For your user to choose between different products or subscription plans, you will need to create a *Product* first on the [Products page](https://dashboard.stripe.com/products). Click "**+ Add product**" to create a Product per subscription plan or product you want to offer. For our example, we will be creating two Products.
+
+## Getting the Pricing IDs
+
+5. We will need to get the Pricing ID of each Product. Go into the page of each Product. Under the *Pricing* section, there will be a *Price*. Click on the Price to go to its Price page.
+6. At the top right of the page, there is a Pricing ID that looks something like **price_xxxxx**. Copy & paste that pricing ID to `STRIPE_PRICE_ID_1` in the `.env` file of your project.
+7. Repeat the same process for the second Product and copy & paste the pricing ID to `STRIPE_PRICE_ID_2` in the `.env` file of your project.
+
+## Creating a Webhook
+
+8. To update the current subscription status of a user and other information in your database, you will need to set up a Stripe webhook. First, go to the [Webhooks page](https://dashboard.stripe.com/webhooks) and click "**+ Add endpoint**".
+9. Next, fill in the details to create the webhook endpoint.
+    * For **Endpoint URL**, be sure to add `/api/webhook` to the end of your website name.
+        * for example: https://www.myapp.com/api/webhook
+        * If you are using localhost, you can use a tunneling tool like [Tunnelmole](https://github.com/robbie-cahill/tunnelmole-client) or [ngrok](https://ngrok.com/) to expose your local server to the internet. Just be sure to add `/api/webhook` at the end of your tunneled URL.
+    * For **Listen to**, choose `Events on your account`.
+    * For **Select events to listen to**, choose the following events:
+        * `checkout.session.completed`
+        * `invoice.payment_succeeded`
+10. After creating the endpoint, on the endpoint's page, click **Reveal** under *Signing secret*. Copy this signing secret, go to the `.env` file of your project, and paste it in `STRIPE_WEBHOOK_SIGNING_SECRET`.
+11. If you are in test mode, you can try purchasing the product or subscription plan with a [test payment method](https://docs.stripe.com/testing). In the webhook page, you will then be able to see whether the webhook was configured successfully by clicking on **View logs** under the *Configuration* section.
+
+## Next Steps
+
+🚀 Congratulations, you've successfully set up payments! Proceed to the [Email](/email) page to continue with setup.

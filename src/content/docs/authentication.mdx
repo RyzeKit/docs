@@ -1,0 +1,64 @@
+---
+title: Authentication
+description: Authentication with RyzeKit.
+---
+import { Image } from 'astro:assets';
+
+## Introduction
+
+This starter kit mainly uses [Logto](https://logto.io/) for authentication, with [Lucia Auth](https://lucia-auth.com/) as the middleman to connect Logto with Astro. Logto is a feature-rich 3rd-party authentication provider that supports multiple authentication methods, including email, password, OTP, and social providers.
+
+## Logto Authentication Setup
+
+1. Create a [Logto](https://auth.logto.io/register) account if you don't have one already.
+2. Create a tenant (any tenant name and data region should be fine).
+    <Image src='/src/assets/Create-Tenant.png' alt='Create-Tenant' width='750' height='450'></Image>
+3. Create your sign-in experience.
+    * For **Identifier**, choose **Email address**, because **Username** is not included in this starter kit at this time.
+    * For **Password**, you can choose any combination of **Password** and/or **Verification code**.
+    * For **Social sign-in**, choose the social provider of your choice, if any.
+    * For our example, we will be choosing **Email address**, **Password**, **Verification code**, and **Github**.
+    <Image src='/src/assets/Create-Signin-Experience.png' alt='Create-Signin-Experience' width='750' height='450'></Image>
+4. In the Logto console, go to **Applications**. Then, scroll down to the bottom and click **View all ->**. Then at the bottom right, click **Create app without framework**. Select **Traditional Web** and fill in the application details and click **Create application**.
+    <Image src='/src/assets/Applications-TraditionalWeb.png' alt='Applications-TraditionalWeb' width='750' height='450'></Image>
+5. Under **Redirect URIs**, enter `http://localhost:4321/callback`. Under **Post sign-out redirect URIs**, enter `http://localhost:4321` (no trailing backslash!). Then click **Save changes**.
+    * *Note:* Having a trailing backslash at the end (e.g. `http://localhost:4321/`) will cause sign-outs to fail.
+    <Image src='/src/assets/Redirect-URIs.png' alt='Redirect-URIs' width='750' height='450'></Image>
+6. Scroll down to the **Endpoints & Credentials** section. Update the `.env` file of your project with your Logto credentials (see image below for the environment variables).
+    <Image src='/src/assets/Logto-Config.png' alt='Logto-Config' width='750' height='450'></Image>
+    * Your `.env` file should now look something like this:
+    ```env filename=".env" {3-5} copy
+    ...
+    # Logto Auth Config
+    LOGTO_ENDPOINT=https://5n0udg.logto.app/
+    LOGTO_APP_ID=isr5scfm8yzoy9leviq0y
+    LOGTO_APP_SECRET=<app-secret>
+    ...
+    ```
+7. Now in the home page of your app, you can test authentication by clicking the **Sign Up** button and creating a new account. Once you have created an account, the app should redirect you to the dashboard page. Signing out should redirect you to the home page.
+
+## Logto Management API Setup
+
+The Logto Management API is used by the starter kit to interact with Logto via API. Follow the steps below to get it set up.
+
+1. In the Logto console, go to **Applications** and click the **+ Create application** button in the top right.
+    <Image src='/src/assets/Applications-Create-application.png' alt='Applications-Create-application' width='750' height='450'></Image>
+2. Scroll down to **Machine-to-machine** and click **Start building**. Then fill in the application details and click **Create application**.
+    <Image src='/src/assets/M2M-Start-building.png' alt='M2M-Start-building' width='750' height='450'></Image>
+3. Check the box next to **Logto Management API access role** and click the **Assign roles** button.
+    <Image src='/src/assets/M2M-Role.png' alt='M2M-Role' width='750' height='450'></Image>
+4. Scroll down to **2. Basics about access token request**. Update the `.env` file with app ID and app secret (see image below for the corresponding environment variables). Afterwards, click **Finish and done**.
+    <Image src='/src/assets/M2M-Config.png' alt='M2M-Config' width='750' height='450'></Image>
+    * Your `.env` file should now look something like this:
+    ```env filename=".env" {3-4} copy
+    ...
+    # Logto API Config
+    LOGTO_M2M_APP_ID=su9l5pz27kgyp9quiavxy
+    LOGTO_M2M_APP_SECRET=<app_secret>
+    ...
+    ```
+5. You can now test the Logto API by logging in to your starter kit app, going to the **Account** page, and changing the user's email address or password. Behind the scenes, your app should be able to successfully connect to the Logto Management API to make the changes.
+
+## Next Steps
+
+🚀 Congratulations, you've successfully set up authentication! Proceed to the next page to continue with setup.
