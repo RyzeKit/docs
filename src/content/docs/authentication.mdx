@@ -3,6 +3,7 @@ title: Authentication
 description: Authentication with RyzeKit.
 ---
 import { Image } from 'astro:assets';
+import CreateTenantPic from '/src/assets/Create-Tenant.png'
 
 ## Introduction
 
@@ -12,7 +13,7 @@ This starter kit mainly uses [Logto](https://logto.io/) for authentication, with
 
 1. Create a [Logto](https://auth.logto.io/register) account if you don't have one already.
 2. Create a tenant (any tenant name and data region should be fine).
-    <Image src='/src/assets/Create-Tenant.png' alt='Create-Tenant' width='750' height='450'></Image>
+    <Image src={CreateTenantPic} alt='Create-Tenant' width='750' height='450' />
 3. Create your sign-in experience.
     * For **Identifier**, choose **Email address**, because **Username** is not included in this starter kit at this time.
     * For **Password**, you can choose any combination of **Password** and/or **Verification code**.
