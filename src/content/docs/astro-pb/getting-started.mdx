@@ -1,0 +1,69 @@
+---
+title: Getting Started
+description: Getting started with RyzeKit.
+prev: false
+---
+
+import {
+  Aside
+} from "@astrojs/starlight/components";
+
+### Astro + Pocketbase Starter 🚀
+
+Get your app up and running by following the steps below.
+
+## Prerequisites
+
+Before you can get started, you will need to have the following installed on your machine.
+
+- Node.js (v20 or higher)
+- Git
+- pnpm
+- A code editor (VSCode, VSCodium, WebStorm, etc.)
+
+## Initialize a new project
+
+Next, go to your terminal. Then, clone the Github repository.
+
+```sh copy
+git clone https://github.com/RyzeKit/astro-pocketbase-starterkit.git
+```
+
+Navigate into the project directory.
+
+```sh copy
+cd astro-pocketbase-starterkit
+```
+
+Install the dependencies.
+
+```sh copy
+pnpm install
+```
+
+Now, re-initialize Git for your project.
+
+```sh copy
+rm -rf .git
+git init
+git add .
+git commit -m "Initial commit"
+```
+
+Create a `.env` file in the root of the project by copying the `.env.example` file.
+
+```sh copy
+cp .env.example .env
+```
+
+## Start the development server
+
+Run the following command in your terminal to start the development server.
+
+```sh copy
+pnpm dev
+```
+
+Open http://localhost:4321 in your browser to see your app.
+
+🚀 Congratulations, your app is now up and running! Proceed to the next page to continue with setup.

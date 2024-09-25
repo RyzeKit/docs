@@ -1,5 +1,6 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
@@ -10,26 +11,59 @@ export default defineConfig({
         github: "https://github.com/RyzeKit/docs",
       },
       sidebar: [
-        { label: "Getting Started", slug: "getting-started" },
-        { label: "Authentication", slug: "authentication" },
         {
-          label: "Payments",
+          label: "Astro Starter",
           items: [
-            { label: "Introduction", slug: "payments/introduction" },
-            { label: "Stripe", slug: "payments/stripe" },
-            { label: "Lemonsqueezy", slug: "payments/lemonsqueezy" },
+            { label: "Getting Started", slug: "astro/getting-started" },
+            { label: "Authentication", slug: "astro/authentication" },
+            {
+              label: "Payments",
+              items: [
+                { label: "Introduction", slug: "astro/payments/introduction" },
+                { label: "Stripe", slug: "astro/payments/stripe" },
+                { label: "Lemonsqueezy", slug: "astro/payments/lemonsqueezy" },
+              ],
+            },
+            { label: "Email", slug: "astro/email" },
+            { label: "Deployment", slug: "astro/deployment" },
+            { label: "Analytics", slug: "astro/analytics" },
           ],
         },
-        { label: "Email", slug: "email" },
-        { label: "Deployment", slug: "deployment" },
-        { label: "Analytics", slug: "analytics" },
+        {
+          label: "Astro + Pocketbase Starter",
+          items: [
+            { label: "Getting Started", slug: "astro-pb/getting-started" },
+            { label: "Backend", slug: "astro-pb/backend" },
+            {
+              label: "Payments",
+              items: [
+                {
+                  label: "Introduction",
+                  slug: "astro-pb/payments/introduction",
+                },
+                { label: "Stripe", slug: "astro-pb/payments/stripe" },
+                {
+                  label: "Lemonsqueezy",
+                  slug: "astro-pb/payments/lemonsqueezy",
+                },
+              ],
+            },
+            { label: "Deployment", slug: "astro-pb/deployment" },
+            { label: "Analytics", slug: "astro-pb/analytics" },
+          ],
+        },
       ],
       components: {
+        SocialIcons: "./src/components/SocialIcons.astro",
         ThemeProvider: "./src/components/ThemeProvider.astro",
         ThemeSelect: "./src/components/ThemeSelect.astro",
       },
-      customCss: ["./src/styles/globals.css"],
+      customCss: ["./src/styles/tailwind.css"],
       editLink: { baseUrl: "https://github.com/RyzeKit/docs/edit/main" },
+    }),
+    tailwind({
+      // Disable the default base styles:
+      applyBaseStyles: false,
     }),
   ],
 });

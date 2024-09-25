@@ -1,0 +1,89 @@
+---
+title: Lemonsqueezy
+description: Lemonsqueezy Payments with RyzeKit.
+---
+
+## Introduction
+
+Follow this guide to get set up with LemonSqueezy.
+
+## Create LemonSqueezy Account
+
+1. First, [create a LemonSqueezy account](https://app.lemonsqueezy.com/register) if you don't have one already. Follow the onboarding instructions to set up your LemonSqueezy account.
+
+## Getting the API Key
+
+2. Create a new API key in the [API keys page](https://app.lemonsqueezy.com/settings/api).
+3. In the `.env` file of your project, add the key to the `LEMON_SQUEEZY_API_KEY` variable.
+
+## Getting the Store ID
+
+4. Get the Store ID in the [Stores Settings page](https://app.lemonsqueezy.com/settings/stores). Copy the number without the # sign, and paste it into `LEMON_SQUEEZY_STORE_ID` in `.env`.
+
+For example, if your store ID is #11111, it should look like:
+
+```env filename=".env" copy
+LEMON_SQUEEZY_STORE_ID=11111
+```
+
+## Creating Products and Variants
+
+5. For your user to choose between different subscription plans, you will need to create a *Product* first on the [Products page](https://app.lemonsqueezy.com/products). Click "**+ New Product**" and go down to the **Variants** section. Here, you will add a variant for each subscription plan you want to offer. For example, if you have a $9/month plan and a $29/month plan, you will be adding 2 variants, one for each plan.
+
+6. After you filled out the details and saved the product, click on the Product, go to the **Variants** section, copy the IDs for each variant, and paste them into the `LEMON_SQUEEZY_VARIANT_ID_1` and `LEMON_SQUEEZY_VARIANT_ID_2` variables in the `.env` file of your project.
+
+## Changing the Project Files
+
+7. In your RyzeKit project, go to `/src/lib/payments/handler.ts` and make the following change at the top of the file (in the imports section):
+    ```typescript filename="/src/lib/payments/handler.ts" copy
+    // import * as payments from "@/lib/payments/stripe";
+    import * as payments from "@/lib/payments/lemonsqueezy";
+    ```
+    Basically, comment out the payments/stripe line and uncomment the payments/lemonsqueezy line.
+
+## Creating a Webhook
+
+8. To update the current subscription status of a user and other information in your database, you will need to set up a LemonSqueezy webhook. First, go to the [Webhooks page](https://app.lemonsqueezy.com/settings/webhooks) and click "**+ Add endpoint**".
+9. Next, fill in the details to create the webhook endpoint.
+    * For **Callback URL**, be sure to add `/api/webhook` to the end of your website name.
+        * for example: www.myapp.com/api/webhook
+        * If you are using localhost, you can use a tunneling tool like [Tunnelmole](https://github.com/robbie-cahill/tunnelmole-client) or [ngrok](https://ngrok.com/) to expose your local server to the internet. Just be sure to add `/api/webhook` at the end of your tunneled URL.
+    * For **Signing secret**, input a random string. Then, copy and paste this string into `LEMON_SQUEEZY_WEBHOOK_SIGNATURE` in the `.env` file of your project.
+        * You can generate a random string by running the following command in your terminal.
+        ```bash copy
+        openssl rand -base64 28
+        ```
+    * For **What updates should we send?**, choose the following events:
+        * `order_created`
+        * `subscription_cancelled`
+
+## Updating Pocketbase
+
+11. Go into your Pocketbase instance and create a new collection called *subscriptions*.
+12. In the **Fields** section, add the following fields:
+    * `userId`
+        * type: Relation
+        * collection: users
+        * Nonempty = true
+    * `customerId`
+        * type: Plain text
+        * Nonempty = true
+    * `variantId`
+        * type: Plain text
+    * `isPaidUser`
+        * type: Boolean
+13. In the **API Rules** section, unlock the following rules:
+    * **List/Search rule**
+    * **Create rule**
+    * **Update rule**
+14. Click **Create**.
+
+## Trying it out
+
+15. If you are in test mode, you can try purchasing the product or subscription plan with a [test payment method](https://docs.lemonsqueezy.com/guides/developer-guide/testing-going-live) in the `/pricing` page of the Astro app.
+
+16. In Lemonsqueezy's webhook page, you will then be able to see whether the webhook was configured successfully. You should also be able to see the subscription in Pocketbase.
+
+## Next Steps
+
+🚀 Congratulations, you've successfully set up payments! Proceed to the next page to continue with setup.
