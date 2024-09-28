@@ -27,6 +27,8 @@ export default defineConfig({
             { label: "Email", slug: "astro/email" },
             { label: "Deployment", slug: "astro/deployment" },
             { label: "Analytics", slug: "astro/analytics" },
+            { label: "Blog", slug: "astro/blog" },
+            { label: "Docs (Help Center)", slug: "astro/docs" },
           ],
         },
         {
@@ -50,6 +52,8 @@ export default defineConfig({
             },
             { label: "Deployment", slug: "astro-pb/deployment" },
             { label: "Analytics", slug: "astro-pb/analytics" },
+            { label: "Blog", slug: "astro-pb/blog" },
+            { label: "Docs (Help Center)", slug: "astro-pb/docs" },
           ],
         },
       ],

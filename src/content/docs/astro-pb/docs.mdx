@@ -1,0 +1,53 @@
+---
+title: Docs (Help Center)
+description: Documentation & help guides with RyzeKit.
+---
+
+## Introduction
+
+This starter kit integrates [Starlight](https://starlight.astro.build/) for documentation. Starlight is a documentation framework built on top of Astro by the Astro team, allowing for first-class support. In this starter kit, the docs portion is labeled as **Help Center**.
+
+## Creating a documentation page
+
+To create a new docs page, create a new `.mdx` or `.md` file in the `/src/content/docs/help/` folder. The file name will be the url slug of the post. For example, if you want the url to be http://localhost:4321/help/my-post, then the file should have the following path: `/src/content/docs/help/my-guide.mdx`.
+
+The file should start with the frontmatter block, which contains metadata about the post. The frontmatter block should be surrounded by three dashes (---). Afterwards will be the content of the docs page.
+
+```mdx filename="my-post.mdx" {} copy
+---
+title: My Guide
+description: My help guide in the help center.
+---
+
+Welcome! This guide will help you get started with the platform.
+```
+
+Then, in the `astro.config.mjs` file, insert an item for the new docs page in the `starlight` integration's `sidebar` property. An example is shown below:
+
+```js filename="astro.config.mjs" {13-16} copy
+...
+    starlight({
+      title: "Company",
+      customCss: [
+        // Modify with this file with custom styling for your docs
+        "./src/styles/docs.css",
+      ],
+      sidebar: [
+        {
+          label: "Home",
+          slug: "help",
+        },
+        {
+          label: "My Guide",
+          slug: "help/my-guide",
+        },
+        {
+          label: "Guides",
+...
+```
+
+## Modifying the styling
+
+You can modify the styling of your documentation by editing the `/src/styles/docs.css` file. For more information about how to style your documentation pages, consult the [official documentation](https://starlight.astro.build/guides/css-and-tailwind/).
+
+🚀 Congratulations on creating your first documentation page!
