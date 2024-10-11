@@ -31,31 +31,6 @@ export default defineConfig({
             { label: "Docs (Help Center)", slug: "astro/docs" },
           ],
         },
-        {
-          label: "Astro + Pocketbase Starter",
-          items: [
-            { label: "Getting Started", slug: "astro-pb/getting-started" },
-            { label: "Backend", slug: "astro-pb/backend" },
-            {
-              label: "Payments",
-              items: [
-                {
-                  label: "Introduction",
-                  slug: "astro-pb/payments/introduction",
-                },
-                { label: "Stripe", slug: "astro-pb/payments/stripe" },
-                {
-                  label: "Lemonsqueezy",
-                  slug: "astro-pb/payments/lemonsqueezy",
-                },
-              ],
-            },
-            { label: "Deployment", slug: "astro-pb/deployment" },
-            { label: "Analytics", slug: "astro-pb/analytics" },
-            { label: "Blog", slug: "astro-pb/blog" },
-            { label: "Docs (Help Center)", slug: "astro-pb/docs" },
-          ],
-        },
       ],
       components: {
         SocialIcons: "./src/components/SocialIcons.astro",
