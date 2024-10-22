@@ -1,0 +1,51 @@
+---
+title: Internationalization (i18n)
+description: Internationalization (i18n) with RyzeKit.
+---
+
+## Introduction
+
+This starter kit uses [astro-i18n-aut](https://github.com/jlarmstrongiv/astro-i18n-aut) for internationalization (i18n). To see how it works, check out the [git commit (link for paid users only)](https://github.com/RyzeKit/astro-starterkit/commit/80f853d67a64696ab35ac6c2069ab2e10c8a9b58) that added this feature.
+
+## Adding locales
+
+In both the `astro.config.mjs` and `src/lib/i18n.ts` files, modify the section below with the locales you want to support:
+
+```js copy
+...
+
+const defaultLocale = "en";
+const locales = {
+  en: "en-US", // the `defaultLocale` value must present in `locales` keys
+  es: "es-MX",
+};
+
+...
+```
+
+In `src/components/LocaleSwitcher.astro`, modify this section with the languages you want to support:
+
+```astro filename="src/components/LocaleSwitcher.astro" copy
+...
+
+  <ul
+    tabindex="0"
+    class="dropdown-content menu bg-base-100 rounded-box z-[1] w-22 p-2 shadow items-center"
+  >
+    <li><a href=`/${localeUrl}`>English</a></li>
+    <li>
+      <a href={`/es/${localeUrl}` === "/es/" ? "/es" : `/es/${localeUrl}`}>
+        Español
+      </a>
+    </li>
+  </ul>
+</div>
+```
+
+## Adding translations
+
+In `src/lib/i18n.ts`, you can add translations for each locale in the `getI18n` function.
+
+Afterwards, you can render the translations in your Astro files. See `src/components/Navbar.astro` for an example of how to do this.
+
+🚀 Congratulations on setting up internationalization!

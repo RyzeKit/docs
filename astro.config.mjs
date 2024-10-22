@@ -29,6 +29,7 @@ export default defineConfig({
             { label: "Analytics", slug: "astro/analytics" },
             { label: "Blog", slug: "astro/blog" },
             { label: "Docs (Help Center)", slug: "astro/docs" },
+            { label: "Internationalization (i18n)", slug: "astro/i18n" },
           ],
         },
       ],
