@@ -15,7 +15,17 @@ export default defineConfig({
           label: "Astro Starter",
           items: [
             { label: "Getting Started", slug: "astro/getting-started" },
-            { label: "Authentication", slug: "astro/authentication" },
+            {
+              label: "Authentication",
+              items: [
+                {
+                  label: "Introduction",
+                  slug: "astro/authentication/introduction",
+                },
+                { label: "Lucia", slug: "astro/authentication/lucia" },
+                { label: "Logto", slug: "astro/authentication/logto" },
+              ],
+            },
             {
               label: "Payments",
               items: [
