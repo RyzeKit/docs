@@ -58,6 +58,10 @@ LEMON_SQUEEZY_STORE_ID=11111
         * `subscription_cancelled`
 10. If you are in test mode, you can try purchasing the product or subscription plan with a [test payment method](https://docs.lemonsqueezy.com/guides/developer-guide/testing-going-live). In the webhook page, you will then be able to see whether the webhook was configured successfully.
 
+## Making a Paid Feature
+
+You can make features, content, or pages accessible only to paid subscribers & members by using the `isSubscribed()` function found in `/src/lib/payments/handler.ts`. An example can be found in `/src/pages/protected/paid-content.astro`, which is the file for the `/protected/paid-content` route.
+
 ## Next Steps
 
 🚀 Congratulations, you've successfully set up payments! Proceed to the next page to continue with setup.
