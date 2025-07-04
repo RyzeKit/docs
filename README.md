@@ -1,5 +1,5 @@
 # RyzeKit Documentation
 
-This is the documentation for [RyzeKit](https://ryzekit.com), the next-generation Astro SaaS starter kit.
+### RyzeKit has been shut down. This starter kit is no longer maintained.
 
-Docs homepage: https://docs.ryzekit.com/
+This is the documentation for [RyzeKit](https://ryzekit.com), the next-generation Astro SaaS starter kit.
